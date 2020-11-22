@@ -13,7 +13,8 @@ protected:
     std::string motDePasse;
 public:
     Compte(){};
-    Compte(std::string, std::string);
+
+    Compte(const std::string &nomUtilisateur, const std::string &motDePasse);
 
     const std::string &getNomUtilisateur() const;
 
@@ -24,6 +25,17 @@ public:
     void setMotDePasse(const std::string &motDePasse);
 
     bool verifierMotDePasse(std::string);
+
+    //Vrai si l'utilisateur est Consommateur
+    virtual bool estConsommateur();
+    //Vrai si l'utilisateur est Producteur
+    virtual bool estProducteur();
+    //Vrai si l'utilisateur est PointDeCollecte
+    virtual bool estPDC();
+
+    virtual std::string getTypeString(){
+        return "Compte";
+    }
 };
 
 #endif //GOODBASKET_COMPTE_H

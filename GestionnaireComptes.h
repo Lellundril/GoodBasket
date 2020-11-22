@@ -12,11 +12,11 @@
 
 class GestionnaireComptes {
 private:
-    std::map<std::string, Compte> comptes;
+    std::map<std::string, Compte*> comptes;
 public:
     GestionnaireComptes();
 
-    void ajouterCompte(Compte);
+    void ajouterCompte(Compte*);
     Compte* getCompte(std::string);
 
     bool estVide();

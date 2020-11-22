@@ -15,16 +15,16 @@ std::string GestionnaireComptes::toString() {
         str << "Il n'y a aucun compte  afficher\n";
     }
     else {
-        std::map<std::string, Compte>::iterator it;
+        std::map<std::string, Compte*>::iterator it;
         for (it = comptes.begin(); it != comptes.end(); it++) {
-            str << it->second.getNomUtilisateur() << " ; " << it->second.getMotDePasse() << "\n";
+            str << "(" << it->second->getNomUtilisateur() << " ; " << it->second->getMotDePasse() << ") : " << it->second->getTypeString() << "\n";
         }
     }
     return str.str();
 }
 
-void GestionnaireComptes::ajouterCompte(Compte c) {
-    comptes.emplace(c.getNomUtilisateur(), c);
+void GestionnaireComptes::ajouterCompte(Compte* c) {
+    comptes.emplace(c->getNomUtilisateur(), c);
 }
 
 bool GestionnaireComptes::estVide() {
@@ -32,10 +32,10 @@ bool GestionnaireComptes::estVide() {
 }
 
 Compte* GestionnaireComptes::getCompte(std::string nom) {
-    std::map<std::string, Compte>::iterator it;
+    std::map<std::string, Compte*>::iterator it;
     it = comptes.find(nom);
     if (it == comptes.end()){
         throw "Compte inexistant";
     }
-    return &it->second;
+    return it->second;
 }

@@ -5,10 +5,9 @@
 #include "Compte.h"
 
 //Créer un comtpe avec un nom d'utilisateur et un mot de passe
-Compte::Compte(std::string nom, std::string mdp) {
-    nomUtilisateur = nom;
-    motDePasse = mdp;
-}
+Compte::Compte(const std::string &nomUtilisateur, const std::string &motDePasse) : nomUtilisateur(nomUtilisateur),
+                                                                                   motDePasse(motDePasse) {}
+
 
 // Vérifie la validité du mot de passe. Vrai si correct, faux sinon
 bool Compte::verifierMotDePasse(std::string mdp) {
@@ -29,4 +28,16 @@ const std::string &Compte::getMotDePasse() const {
 
 void Compte::setMotDePasse(const std::string &motDePasse) {
     Compte::motDePasse = motDePasse;
+}
+
+bool Compte::estConsommateur() {
+    return false;
+}
+
+bool Compte::estProducteur() {
+    return false;
+}
+
+bool Compte::estPDC() {
+    return false;
 }

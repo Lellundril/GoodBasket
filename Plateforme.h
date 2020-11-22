@@ -22,16 +22,11 @@ public:
     void demarrer();
     //Vrai si l'utilisateur est connecté à un compte
     bool estConnecte();
-    //Vrai si l'utilisateur est Consommateur
-    bool estConsommateur();
-    //Vrai si l'utilisateur est Producteur
-    bool estProducteur();
-    //Vrai si l'utilisateur est PointDeCollecte
-    bool estPDC();
 
     //Affiche et donne accès aux différentes interactions possibles
     void menuChoix();
     void traiterChoix();
+    int entrerChoixNumerique();
     void afficherTousLesComptes();
 
     //Fonction compte
