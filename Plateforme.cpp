@@ -10,7 +10,6 @@
 #include "PointDeCollecte.h"
 #include "Producteur.h"
 
-//Constructeur. Initialise toutes les données
 Plateforme::Plateforme() {
     connecte = false;
     compteConnecte = nullptr;
@@ -74,7 +73,7 @@ void Plateforme::menuChoix() {
     }
 }
 
-// Éxecute les fonctions selon la valeur de la variable de choix (choisi pas l'utilisateur ou donné par certaines fonctions)
+// Exécute les fonctions selon la valeur de la variable de choix (choisi pas l'utilisateur ou donné par certaines fonctions)
 void Plateforme::traiterChoix() {
     switch (choixAction) {
         case 1:
@@ -220,7 +219,7 @@ void Plateforme::supprimerPageVitrine() {
 
 }
 
-void Plateforme::consulterFournisseurs() {
+void Plateforme::consulterProducteurs() {
 
 }
 

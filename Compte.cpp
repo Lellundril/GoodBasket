@@ -4,12 +4,10 @@
 
 #include "Compte.h"
 
-//Créer un comtpe avec un nom d'utilisateur et un mot de passe
 Compte::Compte(const std::string &nomUtilisateur, const std::string &motDePasse) : nomUtilisateur(nomUtilisateur),
                                                                                    motDePasse(motDePasse) {}
 
 
-// Vérifie la validité du mot de passe. Vrai si correct, faux sinon
 bool Compte::verifierMotDePasse(std::string mdp) {
     return motDePasse.compare(mdp) == 0;
 }
@@ -40,4 +38,8 @@ bool Compte::estProducteur() {
 
 bool Compte::estPDC() {
     return false;
+}
+
+std::string Compte::getTypeString() {
+    return "Compte";
 }
