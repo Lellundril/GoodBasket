@@ -28,6 +28,7 @@ void Plateforme::demarrer() {
     while (choixAction != -1){
         traiterChoix();
     }
+    quitterPlateforme();
 }
 
 // Vrai si l'utilisateur est connecté à un compte, Faux sinon
@@ -89,7 +90,7 @@ void Plateforme::traiterChoix() {
             afficherTousLesComptes();
             break;
         case -1:
-            quitterPlateforme();
+            //quitterPlateforme();
             break;
         default: // Si l'utilisateur entre un choix  inexistant, réaffiche le menu
             menuChoix();

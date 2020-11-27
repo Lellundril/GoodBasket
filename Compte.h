@@ -41,7 +41,7 @@ protected:
     Compte(const std::string &nomUtilisateur, const std::string &motDePasse);
 public:
     /// @brief Le destructeur ne fait rien, mais doit être défini comme abstrait
-    virtual ~Compte();
+    virtual ~Compte(){}
 
     /**
      * Cette fonction donne le nom d'utilisateur du compte.
