@@ -2,39 +2,39 @@
 // Created by Lellundril on 21/11/2020.
 //
 
-#ifndef GOODBASKET_GESTIONNAIRECOMPTES_H
-#define GOODBASKET_GESTIONNAIRECOMPTES_H
+#ifndef GOODBASKET_GESTIONNAIREUTILISATEURS_H
+#define GOODBASKET_GESTIONNAIREUTILISATEURS_H
 
 
 #include <vector>
 #include <map>
-#include "Compte.h"
+#include "Utilisateur.h"
 
 /**
- * @brief La classe GestionnaireComptes permet le stockage et la gestion efficace des multiples Comptes.
+ * @brief La classe GestionnaireUtilisateurs permet le stockage et la gestion efficace des multiples Comptes.
  *
  * @author Guillaume LETZELTER
  */
-class GestionnaireComptes {
+class GestionnaireUtilisateurs {
 private:
     ///@brief une map contenant les Comptes, avec comme clé leur nom d'utilisateur.
-    std::map<std::string, Compte*> comptes;
+    std::map<std::string, Utilisateur*> comptes;
 public:
     ///@brief Le constructeur par défaut ne fait rien.
-    GestionnaireComptes();
+    GestionnaireUtilisateurs();
 
     /**
      * @brief Cette fonction permet d'ajouter un Compte dans le Gestionnaire.
      *
      * @see comptes.
      */
-    void ajouterCompte(Compte*);
+    void ajouterUtilisateur(Utilisateur*);
 
     /**
      * Cette fonction renvoie le compte correspondant au nom d'utilisateur donné en paramètre.
      * @return le Compte correspondant au nom d'utilisateur entré.
      */
-    Compte* getCompte(std::string);
+    Utilisateur* getUtilisateur(std::string);
 
     /**
      * Cette fonction permet de savoir si le Gestionnaire ne connaît aucun Compte
@@ -52,4 +52,4 @@ public:
 };
 
 
-#endif //GOODBASKET_GESTIONNAIRECOMPTES_H
+#endif //GOODBASKET_GESTIONNAIREUTILISATEURS_H
