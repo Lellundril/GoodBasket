@@ -3,15 +3,14 @@
 //
 
 #include <iostream>
-#include <limits>
 #include <sstream>
 
 #include "interface/InterfaceEntree.h"
 
-InterfaceEntree interfaceEntree;
-
 int main(){
     std::cout << "Bienvenue sur GoodBasket" << std::endl;
+    Model m = Model();
+    std::cout << &m << std::endl;
     // Tant que l'utilisateur n'a pas voulu sortir, on traite la variable de choix
-   interfaceEntree.boucleInterfaceEntree();
+   InterfaceEntree(m).boucleInterfaceEntree();
 }

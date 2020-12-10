@@ -7,14 +7,16 @@
 
 #include "Interface.h"
 #include "Compte/GestionnaireCompte.h"
+#include "Conso/InterfaceConso.h"
+#include "Proc/InterfaceProc.h"
+#include "Respo/InterfaceRespo.h"
+#include "Model.h"
 
 class InterfaceEntree{
 private:
-    int idCompteCo;
-    Interface interface;
-    GestionnaireCompte gestionnaireCompte;
+    Model model;
 public:
-    InterfaceEntree();
+    InterfaceEntree(Model m);
     void menuChoix();
     void menuChoixCompte();
     void traiterChoixCompte();
@@ -23,12 +25,16 @@ public:
     void connecterCompte();
     void seDeconnecter();
     void afficherTousLesComptes();
-    const Interface &getAnInterface() const;
     void quitter();
 
     void boucleInterfaceEntree();
     void boucleCreationCompte();
     void lienCompteEntree();
+
+
+    const Model &getModel() const;
+
+    void setModel(const Model &model);
 };
 
 #endif //GOODBASKET_INTERFACEENTREE_H

@@ -37,3 +37,31 @@ bool Interface::isConnecte() const {
 void Interface::setConnecte(bool connect) {
     connecte = connect;
 }
+
+int Interface::getChoixProc1() const {
+    return choixProc1;
+}
+
+void Interface::setChoixProc1(int choixProc1) {
+    Interface::choixProc1 = choixProc1;
+}
+
+int Interface::getChoixConso1() const {
+    return choixConso1;
+}
+
+void Interface::setChoixConso1(int choixConso1) {
+    Interface::choixConso1 = choixConso1;
+}
+
+int Interface::getChoixRespo1() const {
+    return choixRespo1;
+}
+
+void Interface::setChoixRespo1(int choixRespo1) {
+    Interface::choixRespo1 = choixRespo1;
+}
+
+bool Interface::getConnecte() const{
+    return connecte;
+}

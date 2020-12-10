@@ -3,9 +3,6 @@
 //
 
 #include "Compte.h"
-#include "CompteConso.h"
-#include "CompteProc.h"
-#include "CompteRespo.h"
 
 const std::string &Compte::getEmail() const {
     return email;
@@ -69,6 +66,9 @@ Compte::Compte(int id,std::string nom,std::string prenom,std::string pseudo,std:
     }
 }
 
+Compte::Compte() {
+}
+
 bool Compte::verifierMotDePasse(std::string passe){
     if(mdp.compare(passe) == 0){
         return true;
@@ -83,15 +83,3 @@ int Compte::getId() const {
 void Compte::setId(int id) {
     Compte::id = id;
 }
-
-/*bool Compte::estRespo() {
-    return false;
-}
-
-bool Compte::estProc() {
-    return false;
-}
-
-bool Compte::estConso() {
-    return false;
-}*/

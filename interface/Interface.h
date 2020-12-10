@@ -22,6 +22,20 @@ class Interface{
         void setChoixCompte(int choixCompte);
         bool isConnecte()const;
         void setConnecte(bool connecte);
+
+    int getChoixProc1() const;
+
+    void setChoixProc1(int choixProc1);
+
+    int getChoixConso1() const;
+
+    void setChoixConso1(int choixConso1);
+
+    int getChoixRespo1() const;
+
+    void setChoixRespo1(int choixRespo1);
+
+    bool getConnecte() const;
 };
 
 

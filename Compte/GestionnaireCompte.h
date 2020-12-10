@@ -12,6 +12,7 @@ class GestionnaireCompte {
 private:
     std::vector<Compte>comptes;
 public:
+    GestionnaireCompte();
     const std::vector<Compte> &getComptes() const;
 
     void setComptes(const std::vector<Compte> &comptes);

@@ -17,6 +17,7 @@ private:
     int id;
 public:
     Compte(int id,std::string nom,std::string prenom,std::string pseudo,std::string email,std::string mdp);
+    Compte();
     const std::string &getEmail() const;
 
     void setEmail(const std::string &email);
@@ -38,10 +39,6 @@ public:
     void setPrenom(const std::string &prenom);
 
     bool verifierMotDePasse(std::string passe);
-
-    bool estConso();
-    bool estProc();
-    bool estRespo();
 
     int getId() const;
 

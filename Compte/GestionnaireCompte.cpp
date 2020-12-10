@@ -5,6 +5,9 @@
 #include <iostream>
 #include "GestionnaireCompte.h"
 
+GestionnaireCompte::GestionnaireCompte(){
+}
+
 const std::vector<Compte> &GestionnaireCompte::getComptes() const {
     return comptes;
 }

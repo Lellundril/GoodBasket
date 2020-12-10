@@ -5,14 +5,25 @@
 #ifndef GOODBASKET_INTERFACECONSO_H
 #define GOODBASKET_INTERFACECONSO_H
 
-#include <interface/Interface.h>
+#include "Model.h"
 
 class InterfaceConso{
 private:
-    int idCompteCo;
-    Interface interface;
+    Model model;
 public:
+    InterfaceConso(Model m);
+    void boucleInterfaceConso();
 
+    void menuChoixIntConso();
+    void traiterChoixIntConso();
+
+    void findPCAll();
+
+    void seePanier();
+
+    void seeProfil();
+
+    void deconexion();
 };
 
 #endif //GOODBASKET_INTERFACECONSO_H
