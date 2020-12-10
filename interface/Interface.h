@@ -11,6 +11,7 @@ class Interface{
         int choixCompte;
         int choixProc1;
         int choixConso1;
+        int choixConso2;
         int choixRespo1;
         bool connecte;
 
@@ -36,6 +37,10 @@ class Interface{
     void setChoixRespo1(int choixRespo1);
 
     bool getConnecte() const;
+
+    int getChoixConso2() const;
+
+    void setChoixRespo2(int choixRespo2);
 };
 
 

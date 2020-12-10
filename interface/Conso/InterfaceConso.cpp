@@ -5,6 +5,7 @@
 #include <iostream>
 #include <Outils/EntreeClavier.h>
 #include "InterfaceConso.h"
+#include "InterfaceFindPCAll.h"
 
 InterfaceConso::InterfaceConso(Model m){
     model = Model(m);
@@ -13,7 +14,7 @@ InterfaceConso::InterfaceConso(Model m){
 void InterfaceConso::traiterChoixIntConso(){
     switch (model.getInterface()->getChoixConso1()) {
         case 1:
-            findPCAll();
+            InterfaceFindPCAll(model).boucleInterfaceFindPCAll();
             break;
         case -1:
             seePanier();
@@ -45,10 +46,6 @@ void InterfaceConso::boucleInterfaceConso() {
 
 
 //////////////////////////////// ACTION ///////////////////////
-
-void InterfaceConso::findPCAll() {
-    std::cout << "TOUS LES PCs" << std::endl;
-}
 
 void InterfaceConso::seePanier() {
     std::cout << "TON PANIER" << std::endl;

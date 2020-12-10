@@ -26,4 +26,4 @@ add_executable(GoodBasket
         interface/Respo/InterfaceRespo.cpp
         interface/Respo/InterfaceRespo.h
         interface/Affichage/AffichageTerminal.cpp
-        interface/Affichage/AffichageTerminal.h)
+        interface/Affichage/AffichageTerminal.h interface/Conso/InterfaceFindPCAll.cpp interface/Conso/InterfaceFindPCAll.h)

@@ -9,6 +9,7 @@ Interface::Interface(){
     choixAction = 0;
     choixCompte = 0;
     choixConso1 = 0;
+    choixConso2 = 0;
     choixProc1 = 0;
     choixRespo1 = 0;
     connecte = false;
@@ -64,4 +65,12 @@ void Interface::setChoixRespo1(int choixRespo1) {
 
 bool Interface::getConnecte() const{
     return connecte;
+}
+
+int Interface::getChoixConso2() const{
+    return choixConso2;
+}
+
+void Interface::setChoixRespo2(int choixRespo2) {
+    this->choixConso2 = choixRespo2;
 }
