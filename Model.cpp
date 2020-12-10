@@ -9,26 +9,26 @@ Model::Model(){
     interface = Interface();
 }
 
-GestionnaireCompte Model::getGestionCompte() const {
-    return gestionnaireCompte;
+GestionnaireCompte *Model::getGestionCompte(){
+    return &gestionnaireCompte;
 }
 
 void Model::setGestionCompte(GestionnaireCompte g) {
     gestionnaireCompte = g;
 }
 
-Compte Model::getCompteConnecte() const{
-    return compteConnecte;
+Compte *Model::getCompteConnecte(){
+    return &compteConnecte;
 }
 
 void Model::setCompteConnecte(Compte c) {
     compteConnecte = c;
 }
 
-Interface Model::getInterface() const{
-    return interface;
-}
-
 void Model::setInterface(Interface i) {
     interface = i;
+}
+
+Interface *Model::getInterface() {
+    return &interface;
 }

@@ -35,11 +35,11 @@ std::string GestionnaireCompte::toString() {
     return s;
 }
 
-Compte GestionnaireCompte::getCompte(std::string pseudo) {
+Compte *GestionnaireCompte::getCompte(std::string pseudo) {
     int i=0;
     for (std::vector<Compte>::iterator it = comptes.begin() ; it != comptes.end(); ++it){
         if(it->getPseudo().compare(pseudo) == 0){
-            return comptes.at(i);
+            return &comptes.at(i);
         }
         i++;
     }

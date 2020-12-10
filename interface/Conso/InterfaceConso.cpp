@@ -11,7 +11,7 @@ InterfaceConso::InterfaceConso(Model m){
 }
 
 void InterfaceConso::traiterChoixIntConso(){
-    switch (model.getInterface().getChoixConso1()) {
+    switch (model.getInterface()->getChoixConso1()) {
         case 1:
             findPCAll();
             break;
@@ -32,8 +32,8 @@ void InterfaceConso::traiterChoixIntConso(){
 
 void InterfaceConso::boucleInterfaceConso() {
     std::cout << "VOICI L'AFFICHAGE POUR UN COMPTE CONSO\n" << std::endl;
-    while (model.getInterface().getChoixConso1() != -3){
-        model.getInterface().setChoixConso1(0);
+    while (model.getInterface()->getChoixConso1() != -3){
+        model.getInterface()->setChoixConso1(0);
         menuChoixIntConso();
         traiterChoixIntConso();
     }

@@ -27,19 +27,18 @@ void InterfaceEntree::creerCompte(int idType) {
     std::cin >> nom;
     std::cout << "Entrez votre prenom\n";
     std::cin >> prenom;
-
-    model.getGestionCompte().ajoutCompte(Compte(idType,nom,prenom,pseudo,email,mdp));
+    model.getGestionCompte()->ajoutCompte(Compte(idType,nom,prenom,pseudo,email,mdp));
     std::cout << "Votre compte a ete cree";
     std::cout << std::endl;
-    model.getInterface().setChoixAction(0); //Retour au menu
-    model.getInterface().setChoixCompte(-1);
+    model.getInterface()->setChoixAction(0); //Retour au menu
+    model.getInterface()->setChoixCompte(-1);
 }
 
 
 
 // Exécute les fonctions selon la valeur de la variable de choix (choisi pas l'utilisateur ou donné par certaines fonctions)
 void InterfaceEntree::traiterChoixCompte() {
-    switch (model.getInterface().getChoixCompte()) {
+    switch (model.getInterface()->getChoixCompte()) {
         case 1:
             std::cout << "COMPTE CONSO\n" << std::endl;
             creerCompte(CONSO);
@@ -65,7 +64,7 @@ void InterfaceEntree::traiterChoixCompte() {
 
 void InterfaceEntree::boucleCreationCompte() {
     menuChoixCompte();
-    while (model.getInterface().getChoixCompte() != -1){
+    while (model.getInterface()->getChoixCompte() != -1){
         traiterChoixCompte();
     }
 }
@@ -78,7 +77,7 @@ void InterfaceEntree::boucleCreationCompte() {
 // Exécute les fonctions selon la valeur de la variable de choix (choisi pas l'utilisateur ou donné par certaines fonctions)
 void InterfaceEntree::traiterChoix() {
     std::cout << &model << std::endl;
-    switch (model.getInterface().getChoixAction()) {
+    switch (model.getInterface()->getChoixAction()) {
         case 1:
             connecterCompte();
             break;
@@ -104,19 +103,19 @@ void InterfaceEntree::traiterChoix() {
 // Permet à l'utilisateur de se connecter à un compte si celui-ci existe et si il renseigne le bon mot de passe
 void InterfaceEntree::connecterCompte() {
     std::string pseudo, mdp;
-    if (!model.getGestionCompte().isEmpty()){ // Si aucun compte n'est connu du Gestionnaire, on renseigne l'utilisateur et rien de plus
+    if (!model.getGestionCompte()->isEmpty()){ // Si aucun compte n'est connu du Gestionnaire, on renseigne l'utilisateur et rien de plus
         std::cout << "Connectez vous a votre compte" << std::endl;
         std::cout << "Nom d'utilisateur:  ";
         std::cin >> pseudo;
         std::cout << std::endl;
         try{// Block try/catch qui arrêtera la fonction si le nom de compte entré n'est pas connu du Gestionnaire
-            Compte c = model.getGestionCompte().getCompte(pseudo);
+            Compte *c = model.getGestionCompte()->getCompte(pseudo);
             std::cout << "Mot de passe:  ";
             std::cin >> mdp;
             std::cout << std::endl;
-            if (c.verifierMotDePasse(mdp)){ // Vérification du mot de passe entré. S'il est correct, l'utilisateur est connecté, sinon on arrête la procédure net (pour l'instant)
-                model.getInterface().setConnecte(true);
-
+            if (c->verifierMotDePasse(mdp)){ // Vérification du mot de passe entré. S'il est correct, l'utilisateur est connecté, sinon on arrête la procédure net (pour l'instant)
+                model.getInterface()->setConnecte(true);
+                model.setCompteConnecte(*c);
                 std::cout << "Bienvenue, " << pseudo << "\n" << std::endl;
                 lienCompteEntree();
             }
@@ -131,7 +130,7 @@ void InterfaceEntree::connecterCompte() {
     else{
         std::cout << "Aucun compte n'est enregistre" << std::endl;
     }
-    model.getInterface().setChoixAction(0); // Permet le renvoie au menu
+    model.getInterface()->setChoixAction(0); // Permet le renvoie au menu
 }
 
 /**
@@ -140,8 +139,8 @@ void InterfaceEntree::connecterCompte() {
 // Déconnecte l'utilisateur de son compte
 void InterfaceEntree::seDeconnecter() {
     std::cout << "Deconnexion..." << std::endl;
-    model.getInterface().setConnecte(false);
-    model.getInterface().setChoixAction(0);
+    model.getInterface()->setConnecte(false);
+    model.getInterface()->setChoixAction(0);
 }
 
 /**
@@ -158,20 +157,19 @@ void InterfaceEntree::quitter() {
  */
 // Affiche tous les mots de passe sous la forme:
 void InterfaceEntree::afficherTousLesComptes() {
-    std::cout << model.getGestionCompte().toString() << std::endl;
-    model.getInterface().setChoixAction(0);
+    std::cout << model.getGestionCompte()->toString() << std::endl;
+    model.getInterface()->setChoixAction(0);
 }
 
 void InterfaceEntree::boucleInterfaceEntree() {
-    while (model.getInterface().getChoixAction() != -1){
+    while (model.getInterface()->getChoixAction() != -1){
         traiterChoix();
     }
-    std::cout << "ADIOS L'AMI\n" << std::endl;
     quitter();
 }
 
 void InterfaceEntree::lienCompteEntree() {
-    switch(model.getCompteConnecte().getId()){
+    switch(model.getCompteConnecte()->getId()){
         case CONSO:
             InterfaceConso(model).boucleInterfaceConso();
             break;

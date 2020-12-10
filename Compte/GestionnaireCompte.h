@@ -21,7 +21,7 @@ public:
 
     bool isEmpty();
     std::string toString();
-    Compte getCompte(std::string pseudo);
+    Compte *getCompte(std::string pseudo);
     Compte getCompteId(int id);
     int getId(std::string pseudo);
 };

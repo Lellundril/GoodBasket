@@ -16,11 +16,11 @@ private:
     Interface interface;
 public:
     Model();
-    GestionnaireCompte getGestionCompte() const;
+    GestionnaireCompte *getGestionCompte();
     void setGestionCompte(GestionnaireCompte g);
-    Compte getCompteConnecte() const;
+    Compte *getCompteConnecte();
     void setCompteConnecte(Compte c);
-    Interface getInterface() const;
+    Interface *getInterface();
     void setInterface(Interface i);
 };
 

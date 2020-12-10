@@ -2,6 +2,7 @@
 // Created by brian on 09/12/2020.
 //
 
+#include <iostream>
 #include "Compte.h"
 
 const std::string &Compte::getEmail() const {
@@ -55,13 +56,16 @@ Compte::Compte(int id,std::string nom,std::string prenom,std::string pseudo,std:
     this->id = id;
     switch (id) {
         case CONSO:
-
+            std::cout <<"COMPTE CONSO"<< std::endl;
             break;
         case PROC:
-
+            std::cout <<"COMPTE PROC"<< std::endl;
             break;
         case RESPO:
-
+            std::cout <<"COMPTE RESPO"<< std::endl;
+            break;
+        default:
+            std::cout <<"ERRRRRRRRRRRRRRRRRRRRRRRRRRROR"<< std::endl;
             break;
     }
 }
@@ -81,5 +85,5 @@ int Compte::getId() const {
 }
 
 void Compte::setId(int id) {
-    Compte::id = id;
+    this->id = id;
 }
