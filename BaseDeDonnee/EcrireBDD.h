@@ -25,6 +25,10 @@ private:
 
     std::vector<std::string> ReccupInfoFichierSuppr(std::string url, int id);
 
+    void CommunProcedureEffacer(std::vector<std::string> x,std::string nomFichier);
+
+    static std::vector<std::string> FindCommunProcedure(std::string email, std::string nomFichier);
+
     void FichierProduitInit();
 
     void FichierPcInit();
@@ -40,6 +44,20 @@ private:
     void FichierCycleInit();
 
     void FichierCompteInit();
+
+    int FichierCommunInit(std::string nomFichier);
+
+    void FindCommunProcedureSpecialVector(std::string id_suppr,std::string nomFichier,int pos);
+
+    void SupprSpecialAllProduitsResidu(std::string id);
+
+    void SupprSpecialAllCompteResidu(std::string id);
+
+    void SupprSpecialAllPageResidu(std::string id);
+
+    std::string Analyse(std::vector<std::string> x, int pos, std::string id_suppr);
+
+    void FindCommunProcedureSpecialSimple(std::string id_suppr,std::string nomFichier,int pos);
 
 public:
 
@@ -62,6 +80,9 @@ public:
     void FichierElementPanierEffacer(int id);
 
     void FichierCycleEffacer(int id);
+
+    void FichierCompteEffacer(int id);
+
 
 ///////////////////////////////////// AJOUT //////////////////////////////////
 

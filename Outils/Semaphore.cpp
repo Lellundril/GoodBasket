@@ -6,11 +6,9 @@
 Semaphore::Semaphore(){
     id_produit = 0;
     id_page = 0;
-    id_element_page = 0;
     id_pc = 0;
     id_pages_proposees_pc = 0;
     id_cycle = 0;
-    id_element_cycle = 0;
     id_panier = 0;
     id_element_panier = 0;
 }
@@ -23,11 +21,6 @@ int Semaphore::getIdProduit(){
 int Semaphore::getIdPage(){
     id_page++;
     return id_page-1;
-}
-
-int Semaphore::getIdElementPage(){
-    id_element_page++;
-    return id_element_page-1;
 }
 
 int Semaphore::getIdPc(){
@@ -43,11 +36,6 @@ int Semaphore::getIdPagesProposeesPc(){
 int Semaphore::getIdCycle(){
     id_cycle++;
     return id_cycle-1;
-}
-
-int Semaphore::getIdElementCycle(){
-    id_element_cycle++;
-    return id_element_cycle-1;
 }
 
 int Semaphore::getIdPanier(){
@@ -68,10 +56,6 @@ void Semaphore::setIdPage(int idPage) {
     id_page = idPage;
 }
 
-void Semaphore::setIdElementPage(int idElementPage) {
-    id_element_page = idElementPage;
-}
-
 void Semaphore::setIdPc(int idPc) {
     id_pc = idPc;
 }
@@ -82,10 +66,6 @@ void Semaphore::setIdPagesProposeesPc(int idPagesProposeesPc) {
 
 void Semaphore::setIdCycle(int idCycle) {
     id_cycle = idCycle;
-}
-
-void Semaphore::setIdElementCycle(int idElementCycle) {
-    id_element_cycle = idElementCycle;
 }
 
 void Semaphore::setIdPanier(int idPanier) {

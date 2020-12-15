@@ -19,7 +19,7 @@ Produit::Produit(std::string id, std::string nom_produit, std::string prix, std:
 }
 
 Produit::Produit(std::string id) {
-    std::vector<std::string> res = EcrireBDD::FindFichierCompte(id);
+    std::vector<std::string> res = EcrireBDD::FindFichierProduit(id);
     this->id = res.at(0);
     this->nom_produit = res.at(1);
     this->prix = res.at(2);

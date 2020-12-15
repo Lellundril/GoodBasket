@@ -10,11 +10,9 @@ class Semaphore {
 private :
     int id_produit;
     int id_page;
-    int id_element_page;
     int id_pc;
     int id_pages_proposees_pc;
     int id_cycle;
-    int id_element_cycle;
     int id_panier;
     int id_element_panier;
 public:
@@ -22,21 +20,17 @@ public:
 
     int getIdProduit();
     int getIdPage();
-    int getIdElementPage();
     int getIdPc();
     int getIdPagesProposeesPc();
     int getIdCycle();
-    int getIdElementCycle();
     int getIdPanier();
     int getIdElementPanier();
 
     void setIdProduit(int idProduit);
     void setIdPage(int idPage);
-    void setIdElementPage(int idElementPage);
     void setIdPc(int idPc);
     void setIdPagesProposeesPc(int idPagesProposeesPc);
     void setIdCycle(int idCycle);
-    void setIdElementCycle(int idElementCycle);
     void setIdPanier(int idPanier);
     void setIdElementPanier(int idElementPanier);
 };
