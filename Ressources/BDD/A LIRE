@@ -1,0 +1,28 @@
+Ici, je note la façon dont les information doivent etre écrites dans les fichiers bdd
+
+Compte :
+
+email<nom<prenom<type<mdp<pseudo
+
+Cycle :
+
+id_cycle<{id_page;id_page;id_page}<duree_restante<est_ouvert
+
+Produit :
+
+id_produit<nom_produit<prix<quantite<est_kilo<image
+
+Element Panier :
+
+id_element_panier<id_produit<quantite_prise
+
+Page :
+
+id_page<email<{id_produit;id_produit;id_produit}
+
+Pc :
+id_pc<id_cycle<adresse<code_postal<email<{id_pages_proposees_pc;id_pages_proposees_pc;id_pages_proposees_pc}
+
+Pages Proposées pc :
+
+id_pages_proposees_pc<id_page<est_valide

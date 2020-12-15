@@ -1,8 +1,0 @@
-//
-// Created by brian on 09/12/2020.
-//
-
-#ifndef GOODBASKET_INTERFACERESPO_H
-#define GOODBASKET_INTERFACERESPO_H
-
-#endif //GOODBASKET_INTERFACERESPO_H

@@ -5,9 +5,9 @@
 #ifndef GOODBASKET_MODEL_H
 #define GOODBASKET_MODEL_H
 
-#include "Compte/GestionnaireCompte.h"
-#include "Compte/Compte.h"
-#include "interface/Interface.h"
+#include "Ancien/Compte/GestionnaireCompte.h"
+#include "Ancien/Compte/Compte.h"
+#include "Ancien/interface/Interface.h"
 
 class Model {
 private:

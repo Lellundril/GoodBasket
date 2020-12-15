@@ -7,23 +7,26 @@ include_directories(.)
 
 add_executable(GoodBasket
         Console.cpp
-        Model.cpp
-        Model.h
-        interface/Interface.cpp
-        interface/Interface.h
-        Compte/Compte.cpp
-        Compte/Compte.h
-        Compte/GestionnaireCompte.cpp
-        Compte/GestionnaireCompte.h
-        interface/InterfaceEntree.cpp
-        interface/InterfaceEntree.h
-        Outils/EntreeClavier.cpp
-        Outils/EntreeClavier.h
-        interface/Conso/InterfaceConso.cpp
-        interface/Conso/InterfaceConso.h
-        interface/Proc/InterfaceProc.cpp
-        interface/Proc/InterfaceProc.h
-        interface/Respo/InterfaceRespo.cpp
-        interface/Respo/InterfaceRespo.h
-        interface/Affichage/AffichageTerminal.cpp
-        interface/Affichage/AffichageTerminal.h interface/Conso/InterfaceFindPCAll.cpp interface/Conso/InterfaceFindPCAll.h)
+        Outils/Semaphore.h
+        Outils/Semaphore.cpp
+        BaseDeDonnee/EcrireBDD.cpp
+        BaseDeDonnee/EcrireBDD.h
+        Outils/ManipString.cpp
+        Outils/ManipString.h
+        Objets/Compte.cpp
+        Objets/Compte.h
+        Objets/Produit.cpp
+        Objets/Produit.h
+        Objets/PC.cpp
+        Objets/PC.h
+        Objets/Page.cpp
+        Objets/Page.h
+        Objets/Cycle.cpp
+        Objets/Cycle.h
+        Objets/Panier.cpp
+        Objets/Panier.h
+        Objets/ElementPanier.cpp
+        Objets/ElementPanier.h
+        General.h
+        Objets/PagesProposeesPC.cpp
+        Objets/PagesProposeesPC.h)

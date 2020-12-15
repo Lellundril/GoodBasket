@@ -1,8 +1,0 @@
-//
-// Created by brian on 09/12/2020.
-//
-
-#ifndef GOODBASKET_INTERFACEPROC_H
-#define GOODBASKET_INTERFACEPROC_H
-
-#endif //GOODBASKET_INTERFACEPROC_H

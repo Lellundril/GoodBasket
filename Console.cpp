@@ -4,13 +4,11 @@
 
 #include <iostream>
 #include <sstream>
+#include "BaseDeDonnee/EcrireBDD.h"
 
-#include "interface/InterfaceEntree.h"
-
-int main(){
+int main() {
     std::cout << "Bienvenue sur GoodBasket" << std::endl;
-    Model m = Model();
-    std::cout << &m << std::endl;
-    // Tant que l'utilisateur n'a pas voulu sortir, on traite la variable de choix
-   InterfaceEntree(m).boucleInterfaceEntree();
+    EcrireBDD e;
+    std::string temp = "{10,20,30,40,50}";
+    std::cout << temp.substr(1,temp.size()-2) << std::endl;
 }
