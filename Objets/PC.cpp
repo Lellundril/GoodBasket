@@ -67,7 +67,7 @@ PC::PC(std::string id, std::string id_cycle, std::string adresse, std::string co
 }
 
 PC::PC(std::string id) {
-    std::vector<std::string> res = EcrireBDD::FindFichierPc(id);
+    std::vector<std::string> res = ReadBDD::FindFichierPc(id);
     this->id = res.at(0);
     this->id_cycle = res.at(1);
     this->adresse = res.at(2);
@@ -75,4 +75,28 @@ PC::PC(std::string id) {
     this->email = res.at(4);
     std::string temp = res.at(5);
     ManipString::DecoupeString(temp.substr(1,temp.size()-2),&this->elements,';' );
+}
+
+std::string PC::toBDD() {
+    //id_pc<id_cycle<adresse<code_postal<email<{id_pages_proposees_pc;id_pages_proposees_pc;id_pages_proposees_pc}
+
+    std::string nouv;
+    nouv.append(this->id);
+    nouv.append("<");
+    nouv.append(this->id_cycle);
+    nouv.append("<");
+    nouv.append(this->adresse);
+    nouv.append("<");
+    nouv.append(this->code_postal);
+    nouv.append("<");
+    nouv.append(this->email);
+    nouv.append("<{");
+    for(int i=0; i<this->elements.size(); i++){
+        nouv.append(this->elements.at(i));
+        if(i+1 == i<this->elements.size()){
+            nouv.append(";");
+        }
+    }
+    nouv.append("}");
+    return nouv;
 }

@@ -1,5 +1,4 @@
 0<Patates douces<3.25<15<true<null
-1<Tomates grappes<1.80<32<true<null
 2<Carottes<2.25<150<true<null
 3<Choux blancs<1.5<62<false<null
 4<Choux rouges<1.6<36<false<null

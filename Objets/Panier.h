@@ -6,7 +6,7 @@
 #define GOODBASKET_PANIER_H
 
 #include "General.h"
-#include "BaseDeDonnee/EcrireBDD.h"
+#include "BaseDeDonnee/ReadBDD.h"
 
 class Panier {
 private :
@@ -28,6 +28,8 @@ public :
     const std::vector<std::string> &getElements() const;
 
     void setElements(const std::vector<std::string> &elements);
+
+    std::string toBDD();
 };
 
 

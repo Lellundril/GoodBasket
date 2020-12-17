@@ -19,7 +19,7 @@ Produit::Produit(std::string id, std::string nom_produit, std::string prix, std:
 }
 
 Produit::Produit(std::string id) {
-    std::vector<std::string> res = EcrireBDD::FindFichierProduit(id);
+    std::vector<std::string> res = ReadBDD::FindFichierProduit(id);
     this->id = res.at(0);
     this->nom_produit = res.at(1);
     this->prix = res.at(2);
@@ -74,4 +74,23 @@ const std::string &Produit::getImage() const {
 
 void Produit::setImage(const std::string &image) {
     Produit::image = image;
+}
+
+std::string Produit::toBDD() {
+
+    //id_produit<nom_produit<prix<quantite<est_kilo<image
+
+    std::string nouv;
+    nouv.append(this->id);
+    nouv.append("<");
+    nouv.append(this->nom_produit);
+    nouv.append("<");
+    nouv.append(this->prix);
+    nouv.append("<");
+    nouv.append(this->quantite);
+    nouv.append("<");
+    nouv.append(this->est_kilo);
+    nouv.append("<");
+    nouv.append(this->image);
+    return nouv;
 }

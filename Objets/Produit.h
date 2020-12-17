@@ -6,7 +6,7 @@
 #define GOODBASKET_PRODUIT_H
 
 #include "General.h"
-#include "BaseDeDonnee/EcrireBDD.h"
+#include "BaseDeDonnee/ReadBDD.h"
 
 class Produit {
 private:
@@ -40,6 +40,7 @@ public:
 
     void setImage(const std::string &image);
 
+    std::string toBDD();
 };
 
 

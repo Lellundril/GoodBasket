@@ -2,28 +2,17 @@
 // Created by brian on 14/12/2020.
 //
 
-#ifndef GOODBASKET_ECRIREBDD_H
-#define GOODBASKET_ECRIREBDD_H
+#ifndef GOODBASKET_READBDD_H
+#define GOODBASKET_READBDD_H
 
-#include "Outils/Semaphore.h"
-#include "Outils/ManipString.h"
+#include "Objets/GeneralObjet.h"
+#include "General.h"
 
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <cstdio>   // perror
-#include <climits>  // PATH_MAX
-#include <unistd.h> // getcwd()
-#include <vector>
-#include <Outils/Semaphore.h>
-
-class EcrireBDD {
+class ReadBDD {
 private:
     Semaphore sema;
 
-    int LireFichierSuppr(std::string url, int id);
-
-    std::vector<std::string> ReccupInfoFichierSuppr(std::string url, int id);
+    static int LireFichierSuppr(std::string url, int id);
 
     void CommunProcedureEffacer(std::vector<std::string> x,std::string nomFichier);
 
@@ -63,7 +52,13 @@ public:
 
 ///////////////////////////////////// INIT //////////////////////////////////
 
-    EcrireBDD();
+    Semaphore getSema();
+
+    ReadBDD();
+
+    static std::vector<std::string> ReccupInfoFichierSuppr(std::string url, int id);
+
+    static std::string getAbsolutePath(const std::string s);
 
 ///////////////////////////////////// ERASE //////////////////////////////////
 
@@ -82,11 +77,6 @@ public:
     void FichierCycleEffacer(int id);
 
     void FichierCompteEffacer(int id);
-
-
-///////////////////////////////////// AJOUT //////////////////////////////////
-
-
 
 ///////////////////////////////////// ACCES //////////////////////////////////
 
@@ -107,4 +97,4 @@ public:
     static std::vector<std::string> FindFichierPagesProposeesPc(std::string basicString);
 };
 
-#endif //GOODBASKET_ECRIREBDD_H
+#endif //GOODBASKET_READBDD_H

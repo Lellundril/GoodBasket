@@ -6,7 +6,7 @@
 #define GOODBASKET_PAGESPROPOSEESPC_H
 
 #include "General.h"
-#include "BaseDeDonnee/EcrireBDD.h"
+#include "BaseDeDonnee/ReadBDD.h"
 
 class PagesProposeesPC {
 private:
@@ -27,6 +27,8 @@ public:
     const std::string &getEstValide() const;
 
     void setEstValide(const std::string &estValide);
+
+    std::string toBDD();
 };
 
 

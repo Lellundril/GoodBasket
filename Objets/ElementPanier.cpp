@@ -39,8 +39,18 @@ ElementPanier::ElementPanier(std::string id, std::string id_produit, std::string
 }
 
 ElementPanier::ElementPanier(std::string id) {
-    std::vector<std::string> res = EcrireBDD::FindFichierElementPanier(id);
+    std::vector<std::string> res = ReadBDD::FindFichierElementPanier(id);
     this->id = res.at(0);
     this->id_produit = res.at(1);
     this->quantite_prise = res.at(2);
+}
+
+std::string ElementPanier::toBDD() {
+    std::string nouv;
+    nouv.append(this->id);
+    nouv.append("<");
+    nouv.append(this->id_produit);
+    nouv.append("<");
+    nouv.append(this->quantite_prise);
+    return nouv;
 }

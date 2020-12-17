@@ -6,7 +6,8 @@
 #define GOODBASKET_COMPTE_H
 
 #include <string>
-#include "BaseDeDonnee/EcrireBDD.h"
+#include "General.h"
+#include "BaseDeDonnee/ReadBDD.h"
 
 class Compte {
 private:
@@ -50,6 +51,8 @@ public:
     bool estProd();
 
     bool estRespo();
+
+    std::string toBDD();
 };
 
 

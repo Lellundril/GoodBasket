@@ -8,6 +8,7 @@
 
 #include <string>
 #include <vector>
+#include "BaseDeDonnee/ReadBDD.h"
 
 class Cycle {
 private:
@@ -34,6 +35,7 @@ public:
 
     void setElements(const std::vector<std::string> &elements);
 
+    std::string toBDD();
 };
 
 

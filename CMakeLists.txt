@@ -6,11 +6,8 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(.)
 
 add_executable(GoodBasket
-        Console.cpp
         Outils/Semaphore.h
         Outils/Semaphore.cpp
-        BaseDeDonnee/EcrireBDD.cpp
-        BaseDeDonnee/EcrireBDD.h
         Outils/ManipString.cpp
         Outils/ManipString.h
         Objets/Compte.cpp
@@ -27,6 +24,11 @@ add_executable(GoodBasket
         Objets/Panier.h
         Objets/ElementPanier.cpp
         Objets/ElementPanier.h
-        General.h
         Objets/PagesProposeesPC.cpp
-        Objets/PagesProposeesPC.h)
+        Objets/PagesProposeesPC.h
+        BaseDeDonnee/ReadBDD.cpp
+        BaseDeDonnee/ReadBDD.h
+        Console.cpp
+        General.h Objets/GeneralObjet.h BaseDeDonnee/WriteBDD.cpp BaseDeDonnee/WriteBDD.h)
+
+

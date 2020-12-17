@@ -6,7 +6,7 @@
 #define GOODBASKET_ELEMENTPANIER_H
 
 #include "General.h"
-#include "BaseDeDonnee/EcrireBDD.h"
+#include "BaseDeDonnee/ReadBDD.h"
 
 class ElementPanier {
 private:
@@ -28,6 +28,7 @@ public:
 
     void setQuantitePrise(const std::string &quantitePrise);
 
+    std::string toBDD();
 };
 
 

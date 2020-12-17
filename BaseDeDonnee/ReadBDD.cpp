@@ -2,23 +2,36 @@
 // Created by brian on 14/12/2020.
 //
 
-#include "EcrireBDD.h"
+#include "ReadBDD.h"
+
+Semaphore ReadBDD::getSema(){
+    return sema;
+}
 
 ///////////////////////////////////// INIT //////////////////////////////////
 
-EcrireBDD::EcrireBDD() {
+ReadBDD::ReadBDD() {
     sema = Semaphore();
+    std::cout << "1" << std::endl;
     FichierProduitInit();
+    std::cout << "2" << std::endl;
     FichierPcInit();
+    std::cout << "3" << std::endl;
     FichierPanierInit();
+    std::cout << "4" << std::endl;
     FichierPagesProposeesPcInit();
+    std::cout << "5" << std::endl;
     FichierPageInit();
+    std::cout << "6" << std::endl;
     FichierElementPanierInit();
+    std::cout << "7" << std::endl;
     FichierCycleInit();
+    std::cout << "8" << std::endl;
     FichierCompteInit();
+    std::cout << "9" << std::endl;
 }
 
-std::string getAbsolutePath(const std::string s)
+std::string ReadBDD::getAbsolutePath(const std::string s)
 {
     if (s[0] != '/') // relative path
     {
@@ -38,7 +51,7 @@ std::string getAbsolutePath(const std::string s)
     }
 }
 
-void EcrireBDD::FichierCompteInit(){
+void ReadBDD::FichierCompteInit(){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Compte.txt)"));
     std::ifstream monFlux;
     std::string ligne;
@@ -54,16 +67,24 @@ void EcrireBDD::FichierCompteInit(){
     }
 }
 
-int EcrireBDD::FichierCommunInit(std::string nomFichier){
+int ReadBDD::FichierCommunInit(std::string nomFichier){
+    std::cout << "A" << std::endl;
     std::ifstream monFlux;
+    std::cout << "A" << std::endl;
     std::string ligne;
-    int max=-1;
+    std::cout << "A" << std::endl;
+    int max=0;
+    std::cout << "A" << std::endl;
     monFlux.open(nomFichier.c_str(),std::ios::in);
+    std::cout << "A" << std::endl;
     if(monFlux.is_open())  //On teste si tout est OK
     {
+        std::cout << "AA" << std::endl;
         while (getline (monFlux, ligne)) {
             std::vector<std::string> x;
+            std::cout << "AAA" << std::endl;
             x = ManipString::DecoupeString(ligne,&x,'<');
+            std::cout << "AAA" << std::endl;
             if(max < std::stoi(x.at(0))){
                 max = std::stoi(x.at(0));
             }
@@ -77,44 +98,47 @@ int EcrireBDD::FichierCommunInit(std::string nomFichier){
     return max+1;
 }
 
-void EcrireBDD::FichierProduitInit(){
+void ReadBDD::FichierProduitInit(){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Produit.txt)"));
     sema.setIdProduit(FichierCommunInit(nomFichier));
 }
 
-void EcrireBDD::FichierPcInit(){
+void ReadBDD::FichierPcInit(){
+    std::cout << "a" << std::endl;
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Pc.txt)"));
+    std::cout << "a" << std::endl;
     sema.setIdPc(FichierCommunInit(nomFichier));
+    std::cout << "a" << std::endl;
 }
 
-void EcrireBDD::FichierPanierInit(){
+void ReadBDD::FichierPanierInit(){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Panier.txt)"));
     sema.setIdPanier(FichierCommunInit(nomFichier));
 }
 
-void EcrireBDD::FichierPagesProposeesPcInit(){
+void ReadBDD::FichierPagesProposeesPcInit(){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Pages_proposees_pc.txt)"));
     sema.setIdPagesProposeesPc(FichierCommunInit(nomFichier));
 }
 
-void EcrireBDD::FichierPageInit(){
+void ReadBDD::FichierPageInit(){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Page.txt)"));
     sema.setIdPage(FichierCommunInit(nomFichier));
 }
 
-void EcrireBDD::FichierElementPanierInit(){
+void ReadBDD::FichierElementPanierInit(){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Element_panier.txt)"));
     sema.setIdElementPanier(FichierCommunInit(nomFichier));
 }
 
-void EcrireBDD::FichierCycleInit(){
+void ReadBDD::FichierCycleInit(){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Cycle.txt)"));
     sema.setIdCycle(FichierCommunInit(nomFichier));
 }
 
 ///////////////////////////////////// ERASE /////////////////////////////////////////////////////////////////////////////////////////
 
-int EcrireBDD::LireFichierSuppr(std::string url, int id){
+int ReadBDD::LireFichierSuppr(std::string url, int id){
     std::string nomFichier(getAbsolutePath(url));
     std::ifstream monFlux;
     std::string ligne;
@@ -139,14 +163,13 @@ int EcrireBDD::LireFichierSuppr(std::string url, int id){
     }
 }
 
-std::vector<std::string> EcrireBDD::ReccupInfoFichierSuppr(std::string url, int id){
+std::vector<std::string> ReadBDD::ReccupInfoFichierSuppr(std::string url, int id){
     int pos,i = 0;
-    pos = LireFichierSuppr(url,id);
+    pos = ReadBDD::LireFichierSuppr(url,id);
     std::string nomFichier(getAbsolutePath(url));
     std::ifstream monFlux;
     std::vector<std::string> x;
     std::string ligne;
-
     monFlux.open(nomFichier.c_str(),std::ios::in);
     if(monFlux.is_open())  //On teste si tout est OK
     {
@@ -164,7 +187,7 @@ std::vector<std::string> EcrireBDD::ReccupInfoFichierSuppr(std::string url, int 
     }
 }
 
-void EcrireBDD::CommunProcedureEffacer(std::vector<std::string> x,std::string nomFichier){
+void ReadBDD::CommunProcedureEffacer(std::vector<std::string> x, std::string nomFichier){
     std::ofstream monFlux;
     std::string ligne;
     monFlux.open(nomFichier.c_str(),std::ios::out);
@@ -182,72 +205,64 @@ void EcrireBDD::CommunProcedureEffacer(std::vector<std::string> x,std::string no
     }
 }
 
-void EcrireBDD::FichierProduitEffacer(int id){
+void ReadBDD::FichierProduitEffacer(int id){
     std::vector<std::string> x = ReccupInfoFichierSuppr(R"(Ressources\BDD\Produit.txt)",id);
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Produit.txt)"));
     CommunProcedureEffacer(x,nomFichier);
 }
 
-void EcrireBDD::FichierPcEffacer(int id){
+void ReadBDD::FichierPcEffacer(int id){
     std::vector<std::string> x = ReccupInfoFichierSuppr(R"(Ressources\BDD\Pc.txt)",id);
 
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Pc.txt)"));
     CommunProcedureEffacer(x,nomFichier);
 }
 
-void EcrireBDD::FichierPanierEffacer(int id){
+void ReadBDD::FichierPanierEffacer(int id){
     std::vector<std::string> x = ReccupInfoFichierSuppr(R"(Ressources\BDD\Panier.txt)",id);
 
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Panier.txt)"));
     CommunProcedureEffacer(x,nomFichier);
 }
 
-void EcrireBDD::FichierPagesProposeesPcEffacer(int id){
+void ReadBDD::FichierPagesProposeesPcEffacer(int id){
     std::vector<std::string> x = ReccupInfoFichierSuppr(R"(Ressources\BDD\Pages_proposees_pc.txt)",id);
 
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Pages_proposees_pc.txt)"));
     CommunProcedureEffacer(x,nomFichier);
 }
 
-void EcrireBDD::FichierPageEffacer(int id){
+void ReadBDD::FichierPageEffacer(int id){
     std::vector<std::string> x = ReccupInfoFichierSuppr(R"(Ressources\BDD\Page.txt)",id);
 
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Page.txt)"));
     CommunProcedureEffacer(x,nomFichier);
 }
 
-void EcrireBDD::FichierElementPanierEffacer(int id){
+void ReadBDD::FichierElementPanierEffacer(int id){
     std::vector<std::string> x = ReccupInfoFichierSuppr(R"(Ressources\BDD\Element_panier.txt)",id);
 
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Element_panier.txt)"));
     CommunProcedureEffacer(x,nomFichier);
 }
 
-void EcrireBDD::FichierCycleEffacer(int id){
+void ReadBDD::FichierCycleEffacer(int id){
     std::vector<std::string> x = ReccupInfoFichierSuppr(R"(Ressources\BDD\Cycle.txt)",id);
 
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Cycle.txt)"));
     CommunProcedureEffacer(x,nomFichier);
 }
 
-void EcrireBDD::FichierCompteEffacer(int id){
+void ReadBDD::FichierCompteEffacer(int id){
     std::vector<std::string> x = ReccupInfoFichierSuppr(R"(Ressources\BDD\Compte.txt)",id);
 
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Compte.txt)"));
     CommunProcedureEffacer(x,nomFichier);
 }
 
-///////////////////////////////////// AJOUT ///////////////////////////////////////////////////////////////////////////////////////////////
-//fichier.seekg(0, ios::end);  //On se déplace à la fin du fichier
-
-/*si l'on souhaite ajouter des informations à la fin d'un fichier pré-existant.
-ofstream monFlux("C:/Testcpp/scores.txt“,ios::app);*/
-
-
-
 ///////////////////////////////////// ACCES ///////////////////////////////////////////////////////////////////////////////////////////////
 
-std::vector<std::string> EcrireBDD::FindCommunProcedure(std::string id,std::string nomFichier){
+std::vector<std::string> ReadBDD::FindCommunProcedure(std::string id, std::string nomFichier){
     std::ifstream monFlux;
     std::vector<std::string> x;
     std::string ligne;
@@ -268,49 +283,49 @@ std::vector<std::string> EcrireBDD::FindCommunProcedure(std::string id,std::stri
     }
 }
 
-std::vector<std::string> EcrireBDD::FindFichierCompte(std::string email){
+std::vector<std::string> ReadBDD::FindFichierCompte(std::string email){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Compte.txt)"));
     return FindCommunProcedure(std::move(email),nomFichier);
 }
 
-std::vector<std::string> EcrireBDD::FindFichierCycle(std::string basicString) {
+std::vector<std::string> ReadBDD::FindFichierCycle(std::string basicString) {
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Cycle.txt)"));
     return FindCommunProcedure(basicString,nomFichier);
 }
 
-std::vector<std::string> EcrireBDD::FindFichierElementPanier(std::string basicString) {
+std::vector<std::string> ReadBDD::FindFichierElementPanier(std::string basicString) {
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Element_panier.txt)"));
     return FindCommunProcedure(basicString,nomFichier);
 }
 
-std::vector<std::string> EcrireBDD::FindFichierPage(std::string basicString) {
+std::vector<std::string> ReadBDD::FindFichierPage(std::string basicString) {
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Page.txt)"));
     return FindCommunProcedure(basicString,nomFichier);
 }
 
-std::vector<std::string> EcrireBDD::FindFichierPanier(std::string basicString) {
+std::vector<std::string> ReadBDD::FindFichierPanier(std::string basicString) {
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Panier.txt)"));
     return FindCommunProcedure(basicString,nomFichier);
 }
 
-std::vector<std::string> EcrireBDD::FindFichierPc(std::string basicString) {
+std::vector<std::string> ReadBDD::FindFichierPc(std::string basicString) {
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Pc.txt)"));
     return FindCommunProcedure(basicString,nomFichier);
 }
 
-std::vector<std::string> EcrireBDD::FindFichierProduit(std::string basicString) {
+std::vector<std::string> ReadBDD::FindFichierProduit(std::string basicString) {
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Produit.txt)"));
     return FindCommunProcedure(basicString,nomFichier);
 }
 
-std::vector<std::string> EcrireBDD::FindFichierPagesProposeesPc(std::string basicString) {
+std::vector<std::string> ReadBDD::FindFichierPagesProposeesPc(std::string basicString) {
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Pages_proposees_pc.txt)"));
     return FindCommunProcedure(basicString,nomFichier);
 }
 
 ///////////////////////////////////// ACCES SUPPR SPECIAL//////////////////////////////////////////////////////////////////////////////////////////////
 
-std::string EcrireBDD::Analyse(std::vector<std::string> x, int pos, std::string id_suppr){
+std::string ReadBDD::Analyse(std::vector<std::string> x, int pos, std::string id_suppr){
     std::vector<std::string> y;
     std::string w;
     for(int i=0; i<x.size(); i++){
@@ -334,7 +349,7 @@ std::string EcrireBDD::Analyse(std::vector<std::string> x, int pos, std::string 
     return w;
 }
 
-void EcrireBDD::FindCommunProcedureSpecialVector(std::string id_suppr,std::string nomFichier,int pos){
+void ReadBDD::FindCommunProcedureSpecialVector(std::string id_suppr, std::string nomFichier, int pos){
     std::ifstream monFlux;
     std::vector<std::string> x,z;
     std::string ligne,w;
@@ -355,7 +370,7 @@ void EcrireBDD::FindCommunProcedureSpecialVector(std::string id_suppr,std::strin
     }
 }
 
-void EcrireBDD::FindCommunProcedureSpecialSimple(std::string id_suppr,std::string nomFichier,int pos){
+void ReadBDD::FindCommunProcedureSpecialSimple(std::string id_suppr, std::string nomFichier, int pos){
     std::ifstream monFlux;
     std::vector<std::string> x,z;
     std::string ligne,w;
@@ -382,7 +397,7 @@ void EcrireBDD::FindCommunProcedureSpecialSimple(std::string id_suppr,std::strin
     }
 }
 
-void EcrireBDD::SupprSpecialAllProduitsResidu(std::string id){
+void ReadBDD::SupprSpecialAllProduitsResidu(std::string id){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Page.txt)"));
     int pos = 2;
     FindCommunProcedureSpecialVector(id,nomFichier,pos);
@@ -391,7 +406,7 @@ void EcrireBDD::SupprSpecialAllProduitsResidu(std::string id){
     FindCommunProcedureSpecialSimple(id,nomFichier,pos);
 }
 
-void EcrireBDD::SupprSpecialAllCompteResidu(std::string id){
+void ReadBDD::SupprSpecialAllCompteResidu(std::string id){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Page.txt)"));
     int pos = 1;
     FindCommunProcedureSpecialSimple(id,nomFichier,pos);
@@ -402,7 +417,7 @@ void EcrireBDD::SupprSpecialAllCompteResidu(std::string id){
     FindCommunProcedureSpecialSimple(id,nomFichier,pos);
 }
 
-void EcrireBDD::SupprSpecialAllPageResidu(std::string id){
+void ReadBDD::SupprSpecialAllPageResidu(std::string id){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Pages_proposees_pc.txt)"));
     int pos = 1;
     FindCommunProcedureSpecialSimple(id,nomFichier,pos);

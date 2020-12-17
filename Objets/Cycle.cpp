@@ -2,7 +2,7 @@
 // Created by brian on 14/12/2020.
 //
 
-#include <BaseDeDonnee/EcrireBDD.h>
+#include <BaseDeDonnee/ReadBDD.h>
 #include "Cycle.h"
 
 
@@ -11,7 +11,7 @@ Cycle::Cycle() {
 }
 
 Cycle::Cycle(std::string id) {
-    std::vector<std::string> res = EcrireBDD::FindFichierCycle(id);
+    std::vector<std::string> res = ReadBDD::FindFichierCycle(id);
     this->id = res.at(0);
     std::string temp = res.at(1);
     ManipString::DecoupeString(temp.substr(1,temp.size()-2),&this->elements,';' );
@@ -56,5 +56,22 @@ const std::vector<std::string> &Cycle::getElements() const {
 
 void Cycle::setElements(const std::vector<std::string> &elements) {
     Cycle::elements = elements;
+}
+
+std::string Cycle::toBDD() {
+    std::string nouv;
+    nouv.append(this->id);
+    nouv.append("<{");
+    for(int i=0; i<this->elements.size(); i++){
+        nouv.append(this->elements.at(i));
+        if(i+1 == i<this->elements.size()){
+            nouv.append(";");
+        }
+    }
+    nouv.append("}<");
+    nouv.append(this->duree_restante);
+    nouv.append("<");
+    nouv.append(this->est_ouvert);
+    return nouv;
 }
 

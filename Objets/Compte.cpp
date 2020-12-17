@@ -17,7 +17,7 @@ Compte::Compte() {
 }
 
 Compte::Compte(std::string email) {
-std::vector<std::string> res = EcrireBDD::FindFichierCompte(email);
+std::vector<std::string> res = ReadBDD::FindFichierCompte(email);
     this->email = res.at(0);
     this->nom = res.at(1);
     this->prenom = res.at(2);
@@ -93,4 +93,20 @@ bool Compte::estRespo() {
         return true;
     }
     return false;
+}
+
+std::string Compte::toBDD(){
+    std::string nouv;
+    nouv.append(this->email);
+    nouv.append("<");
+    nouv.append(this->nom);
+    nouv.append("<");
+    nouv.append(this->prenom);
+    nouv.append("<");
+    nouv.append(this->type);
+    nouv.append("<");
+    nouv.append(this->mdp);
+    nouv.append("<");
+    nouv.append(this->pseudo);
+    return nouv;
 }
