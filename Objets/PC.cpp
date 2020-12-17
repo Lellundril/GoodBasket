@@ -4,58 +4,118 @@
 
 #include "PC.h"
 
+/**
+ * Getter
+ * @return valeur
+ */
 const std::string &PC::getId() const {
     return id;
 }
 
+/**
+ * Setter
+ * @param Nouvelle valeur
+ */
 void PC::setId(const std::string &id) {
     PC::id = id;
 }
 
+/**
+ * Getter
+ * @return valeur
+ */
 const std::string &PC::getIdCycle() const {
     return id_cycle;
 }
 
+/**
+ * Setter
+ * @param Nouvelle valeur
+ */
 void PC::setIdCycle(const std::string &idCycle) {
     id_cycle = idCycle;
 }
 
+/**
+ * Getter
+ * @return valeur
+ */
 const std::string &PC::getAdresse() const {
     return adresse;
 }
 
+/**
+ * Setter
+ * @param Nouvelle valeur
+ */
 void PC::setAdresse(const std::string &adresse) {
     PC::adresse = adresse;
 }
 
+/**
+ * Getter
+ * @return valeur
+ */
 const std::string &PC::getCodePostal() const {
     return code_postal;
 }
 
+/**
+ * Setter
+ * @param Nouvelle valeur
+ */
 void PC::setCodePostal(const std::string &codePostal) {
     code_postal = codePostal;
 }
 
+/**
+ * Getter
+ * @return valeur
+ */
 const std::string &PC::getEmail() const {
     return email;
 }
 
+/**
+ * Setter
+ * @param Nouvelle valeur
+ */
 void PC::setEmail(const std::string &email) {
     PC::email = email;
 }
 
+/**
+ * Getter
+ * @return valeur
+ */
 const std::vector<std::string> &PC::getElements() const {
     return elements;
 }
 
+/**
+ * Setter
+ * @param Nouvelle valeur
+ */
 void PC::setElements(const std::vector<std::string> &elements) {
     PC::elements = elements;
 }
 
+/**
+ * Constructeur vide
+ */
 PC::PC() {
 
 }
 
+/**
+ * Constructeur à partir des infos
+ * @param id : nouveau id
+ * @param id_cycle : nouveau id
+ * @param adresse : nouvelle adresse
+ * @param code_postal : nouveau code postal
+ * @param email : nouveau mail
+ * @param elements : nopuveau vector
+ */
 PC::PC(std::string id, std::string id_cycle, std::string adresse, std::string code_postal, std::string email,
        std::vector<std::string> elements) {
     this->id =id;
@@ -66,6 +126,10 @@ PC::PC(std::string id, std::string id_cycle, std::string adresse, std::string co
     this->elements = elements;
 }
 
+/**
+ * Constructeur qui fouille dans la BDD à la recherche
+ * @param id de recherche
+ */
 PC::PC(std::string id) {
     std::vector<std::string> res = ReadBDD::FindFichierPc(id);
     this->id = res.at(0);
@@ -77,6 +141,10 @@ PC::PC(std::string id) {
     ManipString::DecoupeString(temp.substr(1,temp.size()-2),&this->elements,';' );
 }
 
+/**
+ * Conevrtit l'objet dans les normes de la BDD
+ * @return string en ligne
+ */
 std::string PC::toBDD() {
     //id_pc<id_cycle<adresse<code_postal<email<{id_pages_proposees_pc;id_pages_proposees_pc;id_pages_proposees_pc}
 

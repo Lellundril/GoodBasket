@@ -4,6 +4,11 @@
 
 #include "WriteBDD.h"
 
+/**
+ * Fonction récupérant toutes les lignes d'un fichier
+ * @param url : chemin de fichier à partir du dossier Ressource
+ * @return Vector remplit des informations du fichier
+ */
 std::vector<std::string> WriteBDD::ReccupInfoFichierAjout(std::string url){
     std::cout << "temp" << std::endl;
     std::string nomFichier(ReadBDD::getAbsolutePath(url));
@@ -26,6 +31,12 @@ std::vector<std::string> WriteBDD::ReccupInfoFichierAjout(std::string url){
     }
 }
 
+/**
+ * Fonction permettant d'ajouter une ligne
+ * @param nomFichier : chemin de fichier à partir du dossier Ressource
+ * @param nouv : nouvelle ligne à rajouter
+ * @param x : vector remplit des infos du fichier de base avant modification
+ */
 void WriteBDD::AjoutCommunFichier(std::string nomFichier, std::string nouv, std::vector<std::string> x ){
     std::ofstream monFlux;
     std::string ligne;
@@ -45,6 +56,10 @@ void WriteBDD::AjoutCommunFichier(std::string nomFichier, std::string nouv, std:
     }
 }
 
+/**
+ * Fonction permettant de rajouter un objet dans le fichier concerné
+ * @param c : objet à rajouter
+ */
 void WriteBDD::FichierCompteAjout(Compte c){
     std::cout << "ola" << std::endl;
     std::vector<std::string> x = ReccupInfoFichierAjout(R"(Ressources\BDD\Compte.txt)");
@@ -56,6 +71,10 @@ void WriteBDD::FichierCompteAjout(Compte c){
     AjoutCommunFichier(nomFichier,nouv,x);
 }
 
+/**
+ * Fonction permettant de rajouter un objet dans le fichier concerné
+ * @param c : objet à rajouter
+ */
 void WriteBDD::FichierCycleAjout(Cycle c){
     std::vector<std::string> x = ReccupInfoFichierAjout(R"(Ressources\BDD\Cycle.txt)");
     std::string nouv = c.toBDD();
@@ -63,6 +82,10 @@ void WriteBDD::FichierCycleAjout(Cycle c){
     AjoutCommunFichier(nomFichier,nouv,x);
 }
 
+/**
+ * Fonction permettant de rajouter un objet dans le fichier concerné
+ * @param e : objet à rajouter
+ */
 void WriteBDD::FichierElementPanierAjout(ElementPanier e){
     std::vector<std::string> x = ReccupInfoFichierAjout(R"(Ressources\BDD\Element_panier.txt)");
     std::string nouv = e.toBDD();
@@ -70,6 +93,10 @@ void WriteBDD::FichierElementPanierAjout(ElementPanier e){
     AjoutCommunFichier(nomFichier,nouv,x);
 }
 
+/**
+ * Fonction permettant de rajouter un objet dans le fichier concerné
+ * @param p : objet à rajouter
+ */
 void WriteBDD::FichierPageAjout(Page p){
     std::vector<std::string> x = ReccupInfoFichierAjout(R"(Ressources\BDD\Page.txt)");
     std::string nouv = p.toBDD();
@@ -77,6 +104,10 @@ void WriteBDD::FichierPageAjout(Page p){
     AjoutCommunFichier(nomFichier,nouv,x);
 }
 
+/**
+ * Fonction permettant de rajouter un objet dans le fichier concerné
+ * @param p : objet à rajouter
+ */
 void WriteBDD::FichierPagesProposeesPcAjout(PagesProposeesPC p){
     std::vector<std::string> x = ReccupInfoFichierAjout(R"(Ressources\BDD\Pages_proposees_pc.txt)");
     std::string nouv = p.toBDD();
@@ -84,6 +115,10 @@ void WriteBDD::FichierPagesProposeesPcAjout(PagesProposeesPC p){
     AjoutCommunFichier(nomFichier,nouv,x);
 }
 
+/**
+ * Fonction permettant de rajouter un objet dans le fichier concerné
+ * @param p : objet à rajouter
+ */
 void WriteBDD::FichierPanierAjout(Panier p){
     std::vector<std::string> x = ReccupInfoFichierAjout(R"(Ressources\BDD\Panier.txt)");
     std::string nouv = p.toBDD();
@@ -91,6 +126,10 @@ void WriteBDD::FichierPanierAjout(Panier p){
     AjoutCommunFichier(nomFichier,nouv,x);
 }
 
+/**
+ * Fonction permettant de rajouter un objet dans le fichier concerné
+ * @param p : objet à rajouter
+ */
 void WriteBDD::FichierPcAjout(PC p){
     std::vector<std::string> x = ReccupInfoFichierAjout(R"(Ressources\BDD\Pc.txt)");
     std::string nouv = p.toBDD();
@@ -98,6 +137,10 @@ void WriteBDD::FichierPcAjout(PC p){
     AjoutCommunFichier(nomFichier,nouv,x);
 }
 
+/**
+ * Fonction permettant de rajouter un objet dans le fichier concerné
+ * @param p : objet à rajouter
+ */
 void WriteBDD::FichierProduitAjout(Produit p){
     std::vector<std::string> x = ReccupInfoFichierAjout(R"(Ressources\BDD\Produit.txt)");
     std::string nouv = p.toBDD();
@@ -107,6 +150,7 @@ void WriteBDD::FichierProduitAjout(Produit p){
 
 //////////////////////////////////////////////////////
 
+/*
 void WriteBDD::suppr(std::string nomFichier) {
     std::ofstream monFlux;
     std::string ligne;
@@ -139,5 +183,4 @@ void WriteBDD::supprAll() {
     suppr(nomFichier);
     nomFichier = ReadBDD::getAbsolutePath(R"(Ressources\BDD\Compte.txt)");
     suppr(nomFichier);
-}
-
+}*/

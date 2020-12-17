@@ -4,6 +4,13 @@
 
 #include "ManipString.h"
 
+/**
+ * Fonction permettant de découper un string en vector de string à partir d'une balise renseignée
+ * @param s : Ligne à découpée
+ * @param res : Vector qui sera remplit des informations
+ * @param x : Balise permetant le découpe
+ * @return Vector qui sera remplit des informations
+ */
 std::vector<std::string> ManipString::DecoupeString(std::string s, std::vector<std::string> *res, char x){
     if(!s.empty()){
         int index_first = 0;
