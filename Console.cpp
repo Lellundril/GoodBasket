@@ -33,9 +33,25 @@ void RecrireBBDAll( WriteBDD w, ReadBDD e){
 
     Pages Proposées pc :
 
-    id_pages_proposees_pc<id_page<est_valide*/
+    id_pages_proposees_pc<id_page<est_valide
 
-    w.supprAll();
+     0<0<Patates douces<3.25<15<true<null
+1<0<Tomates grappes<1.80<32<true<null
+2<0<Carottes<2.25<150<true<null
+3<1<Choux blancs<1.5<62<false<null
+4<1<Choux rouges<1.6<36<false<null
+5<1<Clementines<2.0<40<true<null
+6<1<Citrouilles<4.0<12<false<null
+7<1<Oignons blancs<1.2<54<true<null
+8<2<Oignons rouges<1.3<34<true<null
+9<2<Pot : Miel de fleurs<5.20<14<false<null
+10<3<Concombres<1.0<45<false<null
+11<3<Courgettes<2.0<54<true<null
+12<3<Poivrons<1.0<32<false<null
+13<3<Botte de radis<3.0<10<false<nul
+     */
+
+   // w.supprAll();//NON FONCTIONNEL
 
     Compte c = Compte("Bertran","PIPOT","pseudo1","aaa@test.com","mdp123.","CONSO");
     Compte c2 = Compte("Jean","BEAU","pseudo2","bb@test.com","mdp123.","CONSO");
@@ -141,14 +157,14 @@ void RecrireBBDAll( WriteBDD w, ReadBDD e){
     vector10.push_back("1");
     vector10.push_back("2");
     std::vector<std::string> vector11;
+    vector11.push_back("3");
     vector11.push_back("4");
-    vector11.push_back("5");
 
     PC pc = PC(std::to_string(e.getSema().getIdPc()),"0","3 rue de quelque part","54500","eee@test.com",vector10);
     PC pc2 = PC(std::to_string(e.getSema().getIdPc()),"1","15 avenue riche","74200","fff@test.com",vector11);
 
     w.FichierPcAjout(pc);
-    w.FichierPcAjout(pc);
+    w.FichierPcAjout(pc2);
 }
 
 int main() {

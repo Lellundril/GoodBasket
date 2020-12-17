@@ -4,12 +4,20 @@
 
 #include "ReadBDD.h"
 
-Semaphore ReadBDD::getSema(){
-    return sema;
+/**
+ * Getter sur le sémaphore en pointeur pour permettre la modification
+ * @return &Semaphore
+ */
+Semaphore &ReadBDD::getSema() const{
+    return (Semaphore &) sema;
 }
 
 ///////////////////////////////////// INIT //////////////////////////////////
 
+/**
+ * Contructeur : Initialise le sémaphore en fonction des fichiers
+ * Flag représantant l'id mis à jour en fonction de l'id maximum
+ */
 ReadBDD::ReadBDD() {
     sema = Semaphore();
     std::cout << "1" << std::endl;
@@ -31,6 +39,11 @@ ReadBDD::ReadBDD() {
     std::cout << "9" << std::endl;
 }
 
+/**
+ * Retourne le chemin absolu d'un chemin de fichier à partir du dossier Ressource
+ * @param s : chemin de fichier à partir du dossier Ressource
+ * @return le chemin absolu
+ */
 std::string ReadBDD::getAbsolutePath(const std::string s)
 {
     if (s[0] != '/') // relative path
@@ -51,11 +64,13 @@ std::string ReadBDD::getAbsolutePath(const std::string s)
     }
 }
 
+/**
+ * Fonction initialisation qui vérifie si le fichier s'ouvre
+ */
 void ReadBDD::FichierCompteInit(){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Compte.txt)"));
     std::ifstream monFlux;
     std::string ligne;
-    int max=-1;
     monFlux.open(nomFichier.c_str(),std::ios::in);
     if(monFlux.is_open())  //On teste si tout est OK
     {
@@ -67,6 +82,11 @@ void ReadBDD::FichierCompteInit(){
     }
 }
 
+/**
+ * Fonction qui recherche la nouvelle valeur du flag
+ * @param nomFichier : chemin de fichier à partir du dossier Ressource
+ * @return le nouveau sémaphore
+ */
 int ReadBDD::FichierCommunInit(std::string nomFichier){
     std::cout << "A" << std::endl;
     std::ifstream monFlux;
@@ -100,11 +120,17 @@ int ReadBDD::FichierCommunInit(std::string nomFichier){
     return max+1;
 }
 
+/**
+ * Procédure qui cherche le nouveau flag sémaphore
+ */
 void ReadBDD::FichierProduitInit(){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Produit.txt)"));
     sema.setIdProduit(FichierCommunInit(nomFichier));
 }
 
+/**
+ * Procédure qui cherche le nouveau flag sémaphore
+ */
 void ReadBDD::FichierPcInit(){
     std::cout << "a" << std::endl;
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Pc.txt)"));
@@ -113,26 +139,41 @@ void ReadBDD::FichierPcInit(){
     std::cout << "a" << std::endl;
 }
 
+/**
+ * Procédure qui cherche le nouveau flag sémaphore
+ */
 void ReadBDD::FichierPanierInit(){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Panier.txt)"));
     sema.setIdPanier(FichierCommunInit(nomFichier));
 }
 
+/**
+ * Procédure qui cherche le nouveau flag sémaphore
+ */
 void ReadBDD::FichierPagesProposeesPcInit(){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Pages_proposees_pc.txt)"));
     sema.setIdPagesProposeesPc(FichierCommunInit(nomFichier));
 }
 
+/**
+ * Procédure qui cherche le nouveau flag sémaphore
+ */
 void ReadBDD::FichierPageInit(){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Page.txt)"));
     sema.setIdPage(FichierCommunInit(nomFichier));
 }
 
+/**
+ * Procédure qui cherche le nouveau flag sémaphore
+ */
 void ReadBDD::FichierElementPanierInit(){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Element_panier.txt)"));
     sema.setIdElementPanier(FichierCommunInit(nomFichier));
 }
 
+/**
+ * Procédure qui cherche le nouveau flag sémaphore
+ */
 void ReadBDD::FichierCycleInit(){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Cycle.txt)"));
     sema.setIdCycle(FichierCommunInit(nomFichier));
@@ -140,6 +181,12 @@ void ReadBDD::FichierCycleInit(){
 
 ///////////////////////////////////// ERASE /////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * Fonction qui cherche la position dans le fichier à partir de l'id
+ * @param url : chemin de fichier à partir du dossier Ressource
+ * @param id : id qui permet de chercher la ligne
+ * @return la position
+ */
 int ReadBDD::LireFichierSuppr(std::string url, int id){
     std::string nomFichier(getAbsolutePath(url));
     std::ifstream monFlux;
@@ -167,6 +214,12 @@ int ReadBDD::LireFichierSuppr(std::string url, int id){
     }
 }
 
+/**
+ * Fonction qui cherche la position dans le fichier compte.txt à partir de l'email
+ * @param url : chemin de fichier à partir du dossier Ressource
+ * @param email : email qui permet de chercher la ligne
+ * @return la position
+ */
 int ReadBDD::LireFichierSupprCompte(std::string url, std::string email){
     std::string nomFichier(getAbsolutePath(url));
     std::ifstream monFlux;
@@ -194,6 +247,12 @@ int ReadBDD::LireFichierSupprCompte(std::string url, std::string email){
     }
 }
 
+/**
+ * Fonction qui stock les lignes en ignorant la ligne de position
+ * @param url : chemin de fichier à partir du dossier Ressource
+ * @param id : id qui permet de chercher la ligne
+ * @return un vector de chaque ligne du nouveau fichier
+ */
 std::vector<std::string> ReadBDD::ReccupInfoFichierSuppr(std::string url, int id){
     int pos,i = 0;
     std::cout << "temp" << std::endl;
@@ -222,6 +281,12 @@ std::vector<std::string> ReadBDD::ReccupInfoFichierSuppr(std::string url, int id
     }
 }
 
+/**
+ * Fonction qui stock les lignes en ignorant la ligne de position
+ * @param url : chemin de fichier à partir du dossier Ressource
+ * @param email : email qui permet de chercher la ligne
+ * @return un vector de chaque ligne du nouveau fichier
+ */
 std::vector<std::string> ReadBDD::ReccupInfoFichierSupprCompte(std::string url, std::string email){
     int pos,i = 0;
     std::cout << "temp" << std::endl;
@@ -250,6 +315,11 @@ std::vector<std::string> ReadBDD::ReccupInfoFichierSupprCompte(std::string url, 
     }
 }
 
+/**
+ * Réécrit le fichier complet
+ * @param x : Vector remplit des nouvelles lignes
+ * @param nomFichier : chemin de fichier à partir du dossier Ressource
+ */
 void ReadBDD::CommunProcedureEffacer(std::vector<std::string> x, std::string nomFichier){
     std::ofstream monFlux;
     std::string ligne;
@@ -268,12 +338,20 @@ void ReadBDD::CommunProcedureEffacer(std::vector<std::string> x, std::string nom
     }
 }
 
+/**
+ * Procédure pour effacer une ligne dans le fichier
+ * @param id : id permettant de localiser la ligne
+ */
 void ReadBDD::FichierProduitEffacer(int id){
     std::vector<std::string> x = ReccupInfoFichierSuppr(R"(Ressources\BDD\Produit.txt)",id);
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Produit.txt)"));
     CommunProcedureEffacer(x,nomFichier);
 }
 
+/**
+ * Procédure pour effacer une ligne dans le fichier
+ * @param id : id permettant de localiser la ligne
+ */
 void ReadBDD::FichierPcEffacer(int id){
     std::vector<std::string> x = ReccupInfoFichierSuppr(R"(Ressources\BDD\Pc.txt)",id);
 
@@ -281,6 +359,10 @@ void ReadBDD::FichierPcEffacer(int id){
     CommunProcedureEffacer(x,nomFichier);
 }
 
+/**
+ * Procédure pour effacer une ligne dans le fichier
+ * @param id : id permettant de localiser la ligne
+ */
 void ReadBDD::FichierPanierEffacer(int id){
     std::vector<std::string> x = ReccupInfoFichierSuppr(R"(Ressources\BDD\Panier.txt)",id);
 
@@ -288,6 +370,10 @@ void ReadBDD::FichierPanierEffacer(int id){
     CommunProcedureEffacer(x,nomFichier);
 }
 
+/**
+ * Procédure pour effacer une ligne dans le fichier
+ * @param id : id permettant de localiser la ligne
+ */
 void ReadBDD::FichierPagesProposeesPcEffacer(int id){
     std::vector<std::string> x = ReccupInfoFichierSuppr(R"(Ressources\BDD\Pages_proposees_pc.txt)",id);
 
@@ -295,6 +381,10 @@ void ReadBDD::FichierPagesProposeesPcEffacer(int id){
     CommunProcedureEffacer(x,nomFichier);
 }
 
+/**
+ * Procédure pour effacer une ligne dans le fichier
+ * @param id : id permettant de localiser la ligne
+ */
 void ReadBDD::FichierPageEffacer(int id){
     std::vector<std::string> x = ReccupInfoFichierSuppr(R"(Ressources\BDD\Page.txt)",id);
 
@@ -302,6 +392,10 @@ void ReadBDD::FichierPageEffacer(int id){
     CommunProcedureEffacer(x,nomFichier);
 }
 
+/**
+ * Procédure pour effacer une ligne dans le fichier
+ * @param id : id permettant de localiser la ligne
+ */
 void ReadBDD::FichierElementPanierEffacer(int id){
     std::vector<std::string> x = ReccupInfoFichierSuppr(R"(Ressources\BDD\Element_panier.txt)",id);
 
@@ -309,6 +403,10 @@ void ReadBDD::FichierElementPanierEffacer(int id){
     CommunProcedureEffacer(x,nomFichier);
 }
 
+/**
+ * Procédure pour effacer une ligne dans le fichier
+ * @param id : id permettant de localiser la ligne
+ */
 void ReadBDD::FichierCycleEffacer(int id){
     std::vector<std::string> x = ReccupInfoFichierSuppr(R"(Ressources\BDD\Cycle.txt)",id);
 
@@ -316,6 +414,10 @@ void ReadBDD::FichierCycleEffacer(int id){
     CommunProcedureEffacer(x,nomFichier);
 }
 
+/**
+ * Procédure pour effacer une ligne dans le fichier
+ * @param id : id permettant de localiser la ligne
+ */
 void ReadBDD::FichierCompteEffacer(std::string email){
     std::vector<std::string> x = ReccupInfoFichierSupprCompte(R"(Ressources\BDD\Compte.txt)",email);
 
@@ -325,6 +427,12 @@ void ReadBDD::FichierCompteEffacer(std::string email){
 
 ///////////////////////////////////// ACCES ///////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * Fonction trouvant le contenu d'une ligne
+ * @param id : permet de trouver la ligne à retourner
+ * @param nomFichier : : chemin de fichier à partir du dossier Ressource
+ * @return vector remplit des informations de la ligne recherchée
+ */
 std::vector<std::string> ReadBDD::FindCommunProcedure(std::string id, std::string nomFichier){
     std::ifstream monFlux;
     std::vector<std::string> x;
@@ -346,41 +454,81 @@ std::vector<std::string> ReadBDD::FindCommunProcedure(std::string id, std::strin
     }
 }
 
+/**
+ * Fonction trouvant le contenu d'une ligne
+ * @param email : permet de trouver la ligne à retourner
+ * @return vector remplit des informations de la ligne recherchée
+ */
 std::vector<std::string> ReadBDD::FindFichierCompte(std::string email){
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Compte.txt)"));
     return FindCommunProcedure(std::move(email),nomFichier);
 }
 
+/**
+ * Fonction trouvant le contenu d'une ligne
+ * @param email : permet de trouver la ligne à retourner
+ * @return vector remplit des informations de la ligne recherchée
+ */
 std::vector<std::string> ReadBDD::FindFichierCycle(std::string basicString) {
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Cycle.txt)"));
     return FindCommunProcedure(basicString,nomFichier);
 }
 
+/**
+ * Fonction trouvant le contenu d'une ligne
+ * @param email : permet de trouver la ligne à retourner
+ * @return vector remplit des informations de la ligne recherchée
+ */
 std::vector<std::string> ReadBDD::FindFichierElementPanier(std::string basicString) {
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Element_panier.txt)"));
     return FindCommunProcedure(basicString,nomFichier);
 }
 
+/**
+ * Fonction trouvant le contenu d'une ligne
+ * @param email : permet de trouver la ligne à retourner
+ * @return vector remplit des informations de la ligne recherchée
+ */
 std::vector<std::string> ReadBDD::FindFichierPage(std::string basicString) {
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Page.txt)"));
     return FindCommunProcedure(basicString,nomFichier);
 }
 
+/**
+ * Fonction trouvant le contenu d'une ligne
+ * @param email : permet de trouver la ligne à retourner
+ * @return vector remplit des informations de la ligne recherchée
+ */
 std::vector<std::string> ReadBDD::FindFichierPanier(std::string basicString) {
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Panier.txt)"));
     return FindCommunProcedure(basicString,nomFichier);
 }
 
+/**
+ * Fonction trouvant le contenu d'une ligne
+ * @param email : permet de trouver la ligne à retourner
+ * @return vector remplit des informations de la ligne recherchée
+ */
 std::vector<std::string> ReadBDD::FindFichierPc(std::string basicString) {
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Pc.txt)"));
     return FindCommunProcedure(basicString,nomFichier);
 }
 
+/**
+ * Fonction trouvant le contenu d'une ligne
+ * @param email : permet de trouver la ligne à retourner
+ * @return vector remplit des informations de la ligne recherchée
+ */
 std::vector<std::string> ReadBDD::FindFichierProduit(std::string basicString) {
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Produit.txt)"));
     return FindCommunProcedure(basicString,nomFichier);
 }
 
+/**
+ * Fonction trouvant le contenu d'une ligne
+ * @param email : permet de trouver la ligne à retourner
+ * @return vector remplit des informations de la ligne recherchée
+ */
 std::vector<std::string> ReadBDD::FindFichierPagesProposeesPc(std::string basicString) {
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Pages_proposees_pc.txt)"));
     return FindCommunProcedure(basicString,nomFichier);
@@ -388,7 +536,7 @@ std::vector<std::string> ReadBDD::FindFichierPagesProposeesPc(std::string basicS
 
 ///////////////////////////////////// ACCES SUPPR SPECIAL//////////////////////////////////////////////////////////////////////////////////////////////
 
-std::string ReadBDD::Analyse(std::vector<std::string> x, int pos, std::string id_suppr){
+/*std::string ReadBDD::Analyse(std::vector<std::string> x, int pos, std::string id_suppr){
     std::vector<std::string> y;
     std::string w;
     for(int i=0; i<x.size(); i++){
@@ -486,4 +634,4 @@ void ReadBDD::SupprSpecialAllPageResidu(std::string id){
     FindCommunProcedureSpecialSimple(id,nomFichier,pos);
     nomFichier = getAbsolutePath(R"(Ressources\BDD\Cycle.txt)");
     FindCommunProcedureSpecialVector(id,nomFichier,pos);
-}
+}*/

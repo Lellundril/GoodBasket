@@ -36,6 +36,7 @@ private:
 
     int FichierCommunInit(std::string nomFichier);
 
+    /*
     void FindCommunProcedureSpecialVector(std::string id_suppr,std::string nomFichier,int pos);
 
     void SupprSpecialAllProduitsResidu(std::string id);
@@ -47,6 +48,7 @@ private:
     std::string Analyse(std::vector<std::string> x, int pos, std::string id_suppr);
 
     void FindCommunProcedureSpecialSimple(std::string id_suppr,std::string nomFichier,int pos);
+    */
 
     int LireFichierSupprCompte(std::string url, std::string email);
 
@@ -56,7 +58,7 @@ public:
 
 ///////////////////////////////////// INIT //////////////////////////////////
 
-    Semaphore getSema();
+    Semaphore &getSema() const;
 
     ReadBDD();
 
