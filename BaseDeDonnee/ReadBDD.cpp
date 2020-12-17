@@ -81,12 +81,14 @@ int ReadBDD::FichierCommunInit(std::string nomFichier){
     {
         std::cout << "AA" << std::endl;
         while (getline (monFlux, ligne)) {
-            std::vector<std::string> x;
-            std::cout << "AAA" << std::endl;
-            x = ManipString::DecoupeString(ligne,&x,'<');
-            std::cout << "AAA" << std::endl;
-            if(max < std::stoi(x.at(0))){
-                max = std::stoi(x.at(0));
+            if(!ligne.empty()){
+                std::vector<std::string> x;
+                std::cout << "AAA" << std::endl;
+                x = ManipString::DecoupeString(ligne,&x,'<');
+                std::cout << "AAA" << std::endl;
+                if(max < std::stoi(x.at(0))){
+                    max = std::stoi(x.at(0));
+                }
             }
         }
         monFlux.close();
@@ -147,15 +149,44 @@ int ReadBDD::LireFichierSuppr(std::string url, int id){
     if(monFlux.is_open())  //On teste si tout est OK
     {
         while (getline (monFlux, ligne)) {
-            std::cout << ligne << std::endl;
-            std::vector<std::string> x;
-            x = ManipString::DecoupeString(ligne,&x,'<');
-            if( id == std::stoi(x.at(0))){
-                return pos;
+            if(!ligne.empty()){
+                std::cout << ligne << std::endl;
+                std::vector<std::string> x;
+                x = ManipString::DecoupeString(ligne,&x,'<');
+                if( id == std::stoi(x.at(0))){
+                    return pos;
+                }
+                pos++;
             }
-            pos++;
         }
+        monFlux.close();
+    }
+    else
+    {
+        std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
+    }
+}
 
+int ReadBDD::LireFichierSupprCompte(std::string url, std::string email){
+    std::string nomFichier(getAbsolutePath(url));
+    std::ifstream monFlux;
+    std::string ligne;
+    int pos = 0;
+    monFlux.open(nomFichier.c_str(),std::ios::in);
+    if(monFlux.is_open())  //On teste si tout est OK
+    {
+        while (getline (monFlux, ligne)) {
+            if(!ligne.empty()){
+                std::cout << ligne << std::endl;
+                std::vector<std::string> x;
+                x = ManipString::DecoupeString(ligne,&x,'<');
+                if( email == x.at(0)){
+                    return pos;
+                }
+                pos++;
+            }
+        }
+        monFlux.close();
     }
     else
     {
@@ -165,7 +196,9 @@ int ReadBDD::LireFichierSuppr(std::string url, int id){
 
 std::vector<std::string> ReadBDD::ReccupInfoFichierSuppr(std::string url, int id){
     int pos,i = 0;
+    std::cout << "temp" << std::endl;
     pos = ReadBDD::LireFichierSuppr(url,id);
+    std::cout << "temp" << std::endl;
     std::string nomFichier(getAbsolutePath(url));
     std::ifstream monFlux;
     std::vector<std::string> x;
@@ -174,10 +207,40 @@ std::vector<std::string> ReadBDD::ReccupInfoFichierSuppr(std::string url, int id
     if(monFlux.is_open())  //On teste si tout est OK
     {
         while (getline (monFlux, ligne)) {
-            if(i!=pos){
-                x.push_back(ligne);
+            if(!ligne.empty()){
+                if(i!=pos){
+                    x.push_back(ligne);
+                }
+                i++;
             }
-            i++;
+        }
+        return x;
+    }
+    else
+    {
+        std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
+    }
+}
+
+std::vector<std::string> ReadBDD::ReccupInfoFichierSupprCompte(std::string url, std::string email){
+    int pos,i = 0;
+    std::cout << "temp" << std::endl;
+    pos = ReadBDD::LireFichierSupprCompte(url,email);
+    std::cout << "temp" << std::endl;
+    std::string nomFichier(getAbsolutePath(url));
+    std::ifstream monFlux;
+    std::vector<std::string> x;
+    std::string ligne;
+    monFlux.open(nomFichier.c_str(),std::ios::in);
+    if(monFlux.is_open())  //On teste si tout est OK
+    {
+        while (getline (monFlux, ligne)) {
+            if(!ligne.empty()){
+                if(i!=pos){
+                    x.push_back(ligne);
+                }
+                i++;
+            }
         }
         return x;
     }
@@ -253,8 +316,8 @@ void ReadBDD::FichierCycleEffacer(int id){
     CommunProcedureEffacer(x,nomFichier);
 }
 
-void ReadBDD::FichierCompteEffacer(int id){
-    std::vector<std::string> x = ReccupInfoFichierSuppr(R"(Ressources\BDD\Compte.txt)",id);
+void ReadBDD::FichierCompteEffacer(std::string email){
+    std::vector<std::string> x = ReccupInfoFichierSupprCompte(R"(Ressources\BDD\Compte.txt)",email);
 
     std::string nomFichier(getAbsolutePath(R"(Ressources\BDD\Compte.txt)"));
     CommunProcedureEffacer(x,nomFichier);

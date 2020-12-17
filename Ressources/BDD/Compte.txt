@@ -1,1 +1,6 @@
 aaa@test.com<Bertran<PIPOT<CONSO<mdp123.<pseudo1
+bb@test.com<Jean<BEAU<CONSO<mdp123.<pseudo2
+ccc@test.com<Luce<BIGA<PROC<mdp123.<pseudo3
+ddd@test.com<Marie<OLLON<PROC<mdp123.<pseudo4
+eee@test.com<Salie<VRIVAUT<RESPO<mdp123.<pseudo5
+fff@test.com<Mario<BROS<RESPO<mdp123.<pseudo6

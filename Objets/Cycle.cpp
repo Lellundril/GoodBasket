@@ -64,7 +64,7 @@ std::string Cycle::toBDD() {
     nouv.append("<{");
     for(int i=0; i<this->elements.size(); i++){
         nouv.append(this->elements.at(i));
-        if(i+1 == i<this->elements.size()){
+        if(i+1 != this->elements.size()){
             nouv.append(";");
         }
     }

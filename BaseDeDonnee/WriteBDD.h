@@ -10,6 +10,8 @@
 
 class WriteBDD {
 private:
+    void suppr(std::string nomFichier);
+
     void AjoutCommunFichier(std::string nomFichier, std::string nouv,std::vector<std::string> x );
 public:
     void FichierCompteAjout(Compte c);
@@ -27,6 +29,10 @@ public:
     void FichierPcAjout(PC p);
 
     void FichierProduitAjout(Produit p);
+
+    std::vector<std::string> ReccupInfoFichierAjout(std::string url);
+
+    void supprAll();
 };
 
 

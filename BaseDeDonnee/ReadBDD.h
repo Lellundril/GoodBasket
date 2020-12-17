@@ -48,6 +48,10 @@ private:
 
     void FindCommunProcedureSpecialSimple(std::string id_suppr,std::string nomFichier,int pos);
 
+    int LireFichierSupprCompte(std::string url, std::string email);
+
+    std::vector<std::string> ReccupInfoFichierSupprCompte(std::string url, std::string email);
+
 public:
 
 ///////////////////////////////////// INIT //////////////////////////////////
@@ -76,7 +80,7 @@ public:
 
     void FichierCycleEffacer(int id);
 
-    void FichierCompteEffacer(int id);
+    void FichierCompteEffacer(std::string email);
 
 ///////////////////////////////////// ACCES //////////////////////////////////
 
@@ -95,6 +99,7 @@ public:
     static std::vector<std::string> FindFichierProduit(std::string basicString);
 
     static std::vector<std::string> FindFichierPagesProposeesPc(std::string basicString);
+
 };
 
 #endif //GOODBASKET_READBDD_H
